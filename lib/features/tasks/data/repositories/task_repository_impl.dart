@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import '../../domain/entities/task.dart';
 import '../../domain/repositories/task_repository.dart';
 import '../../../../core/error/exceptions.dart';
@@ -23,13 +24,15 @@ class TaskRepositoryImpl implements TaskRepository {
       return (null, ServerFailure(e.message));
     } on NetworkException catch (e) {
       return (null, NetworkFailure(e.message));
-    } catch (_) {
-      return (null, const UnknownFailure());
+    } catch (e, stackTrace) {
+      debugPrint('❌ TaskRepository getTasks error: $e');
+      debugPrint('$stackTrace');
+      return (null, UnknownFailure(e.toString()));
     }
   }
 
   @override
-  Future<(Task?, Failure?)> getTask(int taskId) async {
+  Future<(Task?, Failure?)> getTask(String taskId) async {
     try {
       final model = await _remote.getTask(taskId);
       return (model.toEntity(), null);
@@ -41,8 +44,10 @@ class TaskRepositoryImpl implements TaskRepository {
       return (null, ServerFailure(e.message));
     } on NetworkException catch (e) {
       return (null, NetworkFailure(e.message));
-    } catch (_) {
-      return (null, const UnknownFailure());
+    } catch (e, stackTrace) {
+      debugPrint('❌ TaskRepository getTask error: $e');
+      debugPrint('$stackTrace');
+      return (null, UnknownFailure(e.toString()));
     }
   }
 
@@ -65,14 +70,16 @@ class TaskRepositoryImpl implements TaskRepository {
       return (null, ServerFailure(e.message));
     } on NetworkException catch (e) {
       return (null, NetworkFailure(e.message));
-    } catch (_) {
-      return (null, const UnknownFailure());
+    } catch (e, stackTrace) {
+      debugPrint('❌ TaskRepository createTask error: $e');
+      debugPrint('$stackTrace');
+      return (null, UnknownFailure(e.toString()));
     }
   }
 
   @override
   Future<(Task?, Failure?)> updateTask({
-    required int taskId,
+    required String taskId,
     String? title,
     String? description,
     bool? isCompleted,
@@ -93,13 +100,15 @@ class TaskRepositoryImpl implements TaskRepository {
       return (null, ServerFailure(e.message));
     } on NetworkException catch (e) {
       return (null, NetworkFailure(e.message));
-    } catch (_) {
-      return (null, const UnknownFailure());
+    } catch (e, stackTrace) {
+      debugPrint('❌ TaskRepository updateTask error: $e');
+      debugPrint('$stackTrace');
+      return (null, UnknownFailure(e.toString()));
     }
   }
 
   @override
-  Future<(Task?, Failure?)> deleteTask(int taskId) async {
+  Future<(Task?, Failure?)> deleteTask(String taskId) async {
     try {
       final model = await _remote.deleteTask(taskId);
       return (model.toEntity(), null);
@@ -111,8 +120,10 @@ class TaskRepositoryImpl implements TaskRepository {
       return (null, ServerFailure(e.message));
     } on NetworkException catch (e) {
       return (null, NetworkFailure(e.message));
-    } catch (_) {
-      return (null, const UnknownFailure());
+    } catch (e, stackTrace) {
+      debugPrint('❌ TaskRepository deleteTask error: $e');
+      debugPrint('$stackTrace');
+      return (null, UnknownFailure(e.toString()));
     }
   }
 }

@@ -23,7 +23,7 @@ class CreateTaskEvent extends TaskEvent {
 }
 
 class UpdateTaskEvent extends TaskEvent {
-  final int taskId;
+  final String taskId;
   final String? title;
   final String? description;
   final bool? isCompleted;
@@ -48,7 +48,7 @@ class ToggleTaskEvent extends TaskEvent {
 }
 
 class DeleteTaskEvent extends TaskEvent {
-  final int taskId;
+  final String taskId;
   const DeleteTaskEvent(this.taskId);
 
   @override

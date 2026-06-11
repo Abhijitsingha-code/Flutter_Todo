@@ -6,7 +6,7 @@ class DeleteTaskUseCase {
   final TaskRepository _repository;
   DeleteTaskUseCase(this._repository);
 
-  Future<(Task?, Failure?)> call(int taskId) {
+  Future<(Task?, Failure?)> call(String taskId) {
     return _repository.deleteTask(taskId);
   }
 }

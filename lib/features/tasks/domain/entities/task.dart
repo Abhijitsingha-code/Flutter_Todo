@@ -1,9 +1,9 @@
 class Task {
-  final int id;
+  final String id;
   final String title;
   final String? description;
   final bool isCompleted;
-  final int userId;
+  final String userId;
   final DateTime createdAt;
   final DateTime updatedAt;
 
@@ -18,11 +18,11 @@ class Task {
   });
 
   Task copyWith({
-    int? id,
+    String? id,
     String? title,
     String? description,
     bool? isCompleted,
-    int? userId,
+    String? userId,
     DateTime? createdAt,
     DateTime? updatedAt,
   }) {

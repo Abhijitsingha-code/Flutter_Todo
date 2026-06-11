@@ -7,7 +7,7 @@ class UpdateTaskUseCase {
   UpdateTaskUseCase(this._repository);
 
   Future<(Task?, Failure?)> call({
-    required int taskId,
+    required String taskId,
     String? title,
     String? description,
     bool? isCompleted,

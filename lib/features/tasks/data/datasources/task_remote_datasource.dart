@@ -23,7 +23,7 @@ class TaskRemoteDatasource {
     }
   }
 
-  Future<TaskModel> getTask(int taskId) async {
+  Future<TaskModel> getTask(String taskId) async {
     try {
       final response = await _dio.get('/tasks/$taskId');
       return TaskModel.fromJson(response.data as Map<String, dynamic>);
@@ -55,7 +55,7 @@ class TaskRemoteDatasource {
   }
 
   Future<TaskModel> updateTask({
-    required int taskId,
+    required String taskId,
     String? title,
     String? description,
     bool? isCompleted,
@@ -74,7 +74,7 @@ class TaskRemoteDatasource {
     }
   }
 
-  Future<TaskModel> deleteTask(int taskId) async {
+  Future<TaskModel> deleteTask(String taskId) async {
     try {
       final response = await _dio.delete('/tasks/$taskId');
       return TaskModel.fromJson(response.data as Map<String, dynamic>);

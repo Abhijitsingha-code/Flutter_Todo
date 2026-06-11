@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import '../../domain/entities/user.dart';
 import '../../domain/repositories/auth_repository.dart';
 import '../../../../core/error/exceptions.dart';
@@ -28,8 +29,10 @@ class AuthRepositoryImpl implements AuthRepository {
       return (null, ServerFailure(e.message));
     } on NetworkException catch (e) {
       return (null, NetworkFailure(e.message));
-    } catch (_) {
-      return (null, const UnknownFailure());
+    } catch (e, stackTrace) {
+      debugPrint('❌ AuthRepository register error: $e');
+      debugPrint('$stackTrace');
+      return (null, UnknownFailure(e.toString()));
     }
   }
 
@@ -49,8 +52,10 @@ class AuthRepositoryImpl implements AuthRepository {
       return (null, ServerFailure(e.message));
     } on NetworkException catch (e) {
       return (null, NetworkFailure(e.message));
-    } catch (_) {
-      return (null, const UnknownFailure());
+    } catch (e, stackTrace) {
+      debugPrint('❌ AuthRepository login error: $e');
+      debugPrint('$stackTrace');
+      return (null, UnknownFailure(e.toString()));
     }
   }
 
@@ -65,8 +70,10 @@ class AuthRepositoryImpl implements AuthRepository {
       return (null, ServerFailure(e.message));
     } on NetworkException catch (e) {
       return (null, NetworkFailure(e.message));
-    } catch (_) {
-      return (null, const UnknownFailure());
+    } catch (e, stackTrace) {
+      debugPrint('❌ AuthRepository getCurrentUser error: $e');
+      debugPrint('$stackTrace');
+      return (null, UnknownFailure(e.toString()));
     }
   }
 

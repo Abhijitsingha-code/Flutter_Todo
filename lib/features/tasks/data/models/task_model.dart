@@ -1,11 +1,11 @@
 import '../../domain/entities/task.dart';
 
 class TaskModel {
-  final int id;
+  final String id;
   final String title;
   final String? description;
   final bool isCompleted;
-  final int userId;
+  final String userId;
   final String createdAt;
   final String updatedAt;
 
@@ -21,11 +21,11 @@ class TaskModel {
 
   factory TaskModel.fromJson(Map<String, dynamic> json) {
     return TaskModel(
-      id: json['id'] as int,
+      id: json['id'] as String,
       title: json['title'] as String,
       description: json['description'] as String?,
       isCompleted: json['is_completed'] as bool,
-      userId: json['user_id'] as int,
+      userId: json['user_id'] as String,
       createdAt: json['created_at'] as String,
       updatedAt: json['updated_at'] as String,
     );

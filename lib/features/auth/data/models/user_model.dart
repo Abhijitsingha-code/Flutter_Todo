@@ -1,7 +1,7 @@
 import '../../domain/entities/user.dart';
 
 class UserModel {
-  final int id;
+  final String id;
   final String username;
   final String email;
   final String createdAt;
@@ -15,7 +15,7 @@ class UserModel {
 
   factory UserModel.fromJson(Map<String, dynamic> json) {
     return UserModel(
-      id: json['id'] as int,
+      id: json['id'] as String,
       username: json['username'] as String,
       email: json['email'] as String,
       createdAt: json['created_at'] as String,
