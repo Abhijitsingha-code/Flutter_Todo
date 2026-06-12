@@ -70,6 +70,17 @@ class _RegisterPageState extends State<RegisterPage> {
           }
         },
         builder: (context, state) {
+          if (state is AuthInitial) {
+            return const Scaffold(
+              backgroundColor: AppTheme.lightBackground,
+              body: Center(
+                child: CircularProgressIndicator(
+                  color: AppTheme.lightPrimary,
+                ),
+              ),
+            );
+          }
+
           final isLoading = state is AuthLoading;
 
           return SafeArea(

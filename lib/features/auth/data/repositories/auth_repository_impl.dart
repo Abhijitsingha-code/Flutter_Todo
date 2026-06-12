@@ -62,6 +62,10 @@ class AuthRepositoryImpl implements AuthRepository {
   @override
   Future<(User?, Failure?)> getCurrentUser() async {
     try {
+      final hasToken = await _storage.hasToken();
+      if (!hasToken) {
+        return (null, const UnauthorizedFailure('No token found'));
+      }
       final model = await _remote.getCurrentUser();
       return (model.toEntity(), null);
     } on UnauthorizedException catch (e) {

@@ -48,7 +48,7 @@ Future<void> initDependencies() async {
   sl.registerLazySingleton(() => LoginUseCase(sl()));
   sl.registerLazySingleton(() => RegisterUseCase(sl()));
   sl.registerLazySingleton(() => GetCurrentUserUseCase(sl()));
-  sl.registerFactory(
+  sl.registerLazySingleton<AuthCubit>(
     () => AuthCubit(
       loginUseCase: sl(),
       registerUseCase: sl(),
